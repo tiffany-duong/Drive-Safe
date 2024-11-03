@@ -1,0 +1,11 @@
+RoadID, RoadName, Condition, SpeedLimit, RoadType, Lanes, TrafficVolume, AccidentCount, FatalAccidents, PedestrianCrossing, Lighting, AccidentPreventionMeasures
+1, El Camino Real, Fair, 35, Arterial, 4, High, 50, 3, Yes, Adequate, Crosswalks, Speed Limit Signs, Traffic Signals
+2, Stevens Creek Blvd, Good, 45, Arterial, 6, High, 70, 5, Yes, Adequate, Road Bumps, Warning Signs, Dividers
+3, San Tomas Expy, Poor, 50, Expressway, 4, Medium, 45, 2, No, Poor, Dividers, Reflective Markers
+4, Lawrence Expy, Fair, 45, Expressway, 6, High, 60, 4, Yes, Moderate, Speed Limit Signs, Crosswalks
+5, Homestead Rd, Good, 35, Local, 2, Low, 10, 0, Yes, Adequate, Bike Lane, Reflective Signs
+6, Pruneridge Ave, Poor, 25, Local, 2, Low, 15, 1, No, Poor, Dividers, Reflective Markers, Crosswalks
+7, Scott Blvd, Fair, 40, Arterial, 4, Medium, 30, 1, Yes, Moderate, Dividers, Speed Limit Signs
+8, Winchester Blvd, Good, 35, Arterial, 4, High, 55, 2, Yes, Adequate, Crosswalks, Traffic Signals
+9, Saratoga Ave, Fair, 35, Arterial, 4, Medium, 20, 0, Yes, Adequate, Reflective Markers, Crosswalks, Speed Limit Signs
+10, Kiely Blvd, Poor, 30, Local, 2, Medium, 25, 2, No, Poor, Warning Signs, Dividers
