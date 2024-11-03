@@ -1,0 +1,11 @@
+IncidentID, RoadID, RoadName, Condition, SurfaceType, SpeedLimit, RoadType, Lanes, TrafficVolume, AccidentCount, FatalAccidents, AccidentType, VehicleType, WeatherCondition, TimeOfDay, DayOfWeek, Distraction, Speeding, SeatbeltUsed, PedestrianCrossing, Lighting, AccidentPreventionMeasures, SuggestedImprovement
+1001, 1, El Camino Real, Fair, Asphalt, 35, Arterial, 4, High, 50, 3, Rear-end, Car, Clear, Night, Friday, Mobile Usage, 1, 1, 1, Adequate, Speed Limit Signs, Crosswalks, Add Reflective Markings
+1002, 2, Stevens Creek Blvd, Good, Concrete, 45, Arterial, 6, High, 70, 5, Side-impact, SUV, Rain, Evening, Thursday, None, 1, 1, 1, Adequate, Dividers, Warning Signs, Improve Drainage System
+1003, 3, San Tomas Expy, Poor, Gravel, 50, Expressway, 4, Medium, 45, 2, Head-on, Truck, Fog, Morning, Tuesday, Fatigue, 1, 1, 0, Poor, Reflective Markers, Dividers, Upgrade Lighting
+1004, 4, Lawrence Expy, Fair, Asphalt, 45, Expressway, 6, High, 60, 4, Sideswipe, Car, Clear, Afternoon, Monday, Mobile Usage, 0, 1, 1, Moderate, Crosswalks, Speed Limit Signs, Add Lane Markings
+1005, 5, Homestead Rd, Good, Asphalt, 35, Local, 2, Low, 10, 0, None, Car, Clear, Morning, Wednesday, None, 0, 1, 1, Adequate, Bike Lane, Reflective Signs, No Action Needed
+1006, 6, Pruneridge Ave, Poor, Gravel, 25, Local, 2, Low, 15, 1, Rear-end, Car, Rain, Evening, Saturday, Inattention, 1, 0, 0, Poor, Reflective Markers, Crosswalks, Resurface Road
+1007, 7, Scott Blvd, Fair, Concrete, 40, Arterial, 4, Medium, 30, 1, Side-impact, Motorcycle, Clear, Afternoon, Sunday, Speeding, 1, 1, 1, Moderate, Dividers, Speed Limit Signs, Improve Lane Visibility
+1008, 8, Winchester Blvd, Good, Asphalt, 35, Arterial, 4, High, 55, 2, Pedestrian, Car, Clear, Night, Saturday, None, 0, 1, 1, Adequate, Crosswalks, Traffic Signals, Increase Lighting
+1009, 9, Saratoga Ave, Fair, Asphalt, 35, Arterial, 4, Medium, 20, 0, None, Car, Clear, Morning, Thursday, None, 0, 1, 1, Adequate, Reflective Markers, Crosswalks, No Action Needed
+1010, 10, Kiely Blvd, Poor, Gravel, 30, Local, 2, Medium, 25, 2, Head-on, Car, Rain, Night, Friday, Fatigue, 1, 0, 0, Poor, Warning Signs, Dividers, Improve Surface Quality
