@@ -1,81 +1,56 @@
-# Bob - Teen Driving Safety Application
+# Bob - Teen Driving Safety Analysis Platform 🚗
 
 ## Overview
-Bob is an advanced teen driving analysis and safety education platform designed to help young drivers develop safe driving habits. The application combines real-time data analysis, interactive scenarios, and educational content to create a comprehensive learning experience.
+Bob is an advanced web application designed to help teen drivers understand and improve their driving safety through data analysis, interactive scenarios, and educational content.
 
 ## Features
-- 📊 **Dashboard**: Visual analysis of driving patterns and statistics
-  - Speed monitoring
-  - Acceleration/braking patterns
-  - Route tracking
-  - Safety score calculation
-- 🔍 **Detailed Analysis**: In-depth examination of driving data
-  - Historical driving patterns
-  - Risk assessment reports
-  - Improvement recommendations
+- 📊 **Dashboard**: Real-time analysis of driving patterns and safety metrics
+- 🔍 **Detailed Analysis**: In-depth road safety statistics and condition analysis
 - 🛡️ **Safety Tips**: Interactive learning modules including:
   - General safety guidelines
-  - Interactive driving scenarios
-  - Safety knowledge quizzes
+  - Interactive scenarios
+  - Safety knowledge quiz
   - Progress tracking
-- 🔎 **Data Explorer**: Interactive data visualization tools
 - 🚨 **Emergency Services**: Quick access to emergency contacts and guidelines
 
-## Tech Stack
-- Frontend: Streamlit
-- Data Processing: Python, Pandas
-- Visualization: Plotly
-- Database: [Add your database info]
-
 ## Installation
+
+### Prerequisites
+- Python 3.8 or higher
+- pip (Python package installer)
+
+### Setup
 1. Clone the repository:
 ```bash
-git clone https://github.com/YOUR_USERNAME/teen-driving-safety.git
-cd teen-driving-safety
+git clone https://github.com/Reenamjot/boblol.git
+cd boblol
 ```
 
-2. Create and activate a virtual environment (recommended):
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
-
-3. Install required dependencies:
+2. Install required packages:
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Run the application:
+3. Run the application:
 ```bash
 streamlit run App_UI.py
 ```
 
-## Requirements
-- Python 3.7+
-- Streamlit
-- Pandas
-- Plotly
-- Other dependencies listed in requirements.txt
+## Data Sources
+The application uses multiple data sources:
+- Synthetic traffic fatalities data
+- Weather condition data
+- Road safety analysis data
 
 ## Project Structure
 ```
-teen-driving-safety/
-├── App_UI.py           # Main application file
-├── App_Pic.py          # Image processing
-├── safety_tips.py      # Safety education module
-├── streamlit_app.py    # Streamlit configuration
-├── test_safety.py      # Test cases
-├── requirements.txt    # Project dependencies
-└── README.md          # Documentation
+boblol/
+├── App_UI.py              # Main application file
+├── detailed_analysis.csv  # Road safety data
+├── requirements.txt       # Project dependencies
+└── README.md             # Project documentation
 ```
 
-## Contributing
-We welcome contributions to improve Bob! Here's how you can help:
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
 
 
