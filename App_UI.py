@@ -41,6 +41,7 @@ def generate_synthetic_weather_data(size):
     temperatures = np.random.normal(20, 5, size)
     conditions = np.random.choice(weather_conditions, size)
     
+    
     return pd.DataFrame({
         'temperature': temperatures,
         'weather_condition': conditions
@@ -96,6 +97,27 @@ def save_quiz_score(score, total_questions):
         st.error(f"Error saving score: {e}")
         return None
 
+def load_road_data():
+    """Load road safety data from GitHub"""
+    try:
+        github_csv_url = "https://raw.githubusercontent.com/Reenamjot/boblol/main/detailed_analysis.csv"
+        road_data = pd.read_csv(github_csv_url)
+        
+        # Debug: Print column names
+        print("Available columns:", road_data.columns.tolist())
+        st.write("Available columns:", road_data.columns.tolist())
+        
+        # Clean column names - make them consistent
+        road_data.columns = road_data.columns.str.strip().str.replace(' ', '_')
+        
+        # Show cleaned column names
+        st.write("Cleaned column names:", road_data.columns.tolist())
+        
+        return road_data
+    except Exception as e:
+        st.error(f"Error loading data: {str(e)}")
+        return None
+
 def main():
     st.title("🚗 Bob - Advanced Teen Driving Analysis")
     
@@ -132,7 +154,96 @@ def main():
             
         elif page == "Detailed Analysis":
             st.header("🔍 Detailed Analysis")
-            # Your existing detailed analysis code
+            
+            # Load and display the data structure first
+            road_data = load_road_data()
+            if road_data is not None:
+                st.write("Data Structure Check:")
+                st.write(road_data.head())
+                st.write("Column Names:", road_data.columns.tolist())
+                
+                # Overview statistics
+                st.subheader("📊 Road Safety Overview")
+                col1, col2, col3, col4 = st.columns(4)
+                
+                with col1:
+                    total_roads = len(road_data['RoadID'].unique())
+                    st.metric("Total Roads", total_roads)
+                    
+                with col2:
+                    total_accidents = len(road_data)
+                    st.metric("Total Incidents", total_accidents)
+                
+                with col3:
+                    fatal_accidents = road_data['FatalAccidents'].sum()
+                    st.metric("Fatal Incidents", fatal_accidents)
+                
+                with col4:
+                    avg_accidents = round(total_accidents / total_roads, 1)
+                    st.metric("Avg Incidents per Road", avg_accidents)
+                
+                # Road Condition Analysis
+                st.subheader("🛣️ Road Condition Analysis")
+                col1, col2 = st.columns(2)
+                
+                with col1:
+                    condition_data = road_data['RoadCondition'].value_counts()
+                    fig_condition = px.pie(values=condition_data.values, 
+                                         names=condition_data.index,
+                                         title='Incidents by Road Condition')
+                    st.plotly_chart(fig_condition)
+                    
+                with col2:
+                    weather_data = road_data['WeatherCondition'].value_counts()
+                    fig_weather = px.bar(x=weather_data.index, 
+                                       y=weather_data.values,
+                                       title='Incidents by Weather Condition')
+                    st.plotly_chart(fig_weather)
+                
+                # Time Analysis
+                st.subheader("⏰ Time-based Analysis")
+                col1, col2 = st.columns(2)
+                
+                with col1:
+                    time_data = road_data['TimeOfDay'].value_counts()
+                    fig_time = px.pie(values=time_data.values, 
+                                    names=time_data.index,
+                                    title='Incidents by Time of Day')
+                    st.plotly_chart(fig_time)
+                    
+                with col2:
+                    day_data = road_data['DayOfWeek'].value_counts()
+                    fig_day = px.bar(x=day_data.index, 
+                                   y=day_data.values,
+                                   title='Incidents by Day of Week')
+                    st.plotly_chart(fig_day)
+                
+                # Interactive Road Selection
+                st.subheader("🔎 Individual Road Analysis")
+                selected_road = st.selectbox("Select a road for detailed analysis:", 
+                                           road_data['RoadName'].unique())
+                
+                road_details = road_data[road_data['RoadName'] == selected_road].iloc[0]
+                
+                col1, col2 = st.columns(2)
+                
+                with col1:
+                    st.markdown(f"""
+                    ### Road Details
+                    - **Speed Limit:** {road_details['SpeedLimit']} mph
+                    - **Road Type:** {road_details['RoadType']}
+                    - **Surface Type:** {road_details['SurfaceType']}
+                    - **Lighting:** {road_details['Lighting']}
+                    """)
+                    
+                with col2:
+                    st.markdown(f"""
+                    ### Safety Statistics
+                    - **Total Incidents:** {len(road_data[road_data['RoadName'] == selected_road])}
+                    - **Common Weather Condition:** {road_data[road_data['RoadName'] == selected_road]['WeatherCondition'].mode().iloc[0]}
+                    - **Common Time of Day:** {road_data[road_data['RoadName'] == selected_road]['TimeOfDay'].mode().iloc[0]}
+                    - **Most Common Day:** {road_data[road_data['RoadName'] == selected_road]['DayOfWeek'].mode().iloc[0]}
+                    """)
             
         elif page == "Safety Tips":
             st.header("🛡️ Safety Tips Generator")
