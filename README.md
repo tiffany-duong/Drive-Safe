@@ -1,56 +1,73 @@
-# Bob - Teen Driving Safety Analysis Platform 🚗
+# Teen Driving Safety Analysis Platform 🚗
 
 ## Overview
-Bob is an advanced web application designed to help teen drivers understand and improve their driving safety through data analysis, interactive scenarios, and educational content.
+A web application that helps teen drivers improve their driving safety through real-time analysis, interactive learning, and safety alerts.
 
-## Features
-- 📊 **Dashboard**: Real-time analysis of driving patterns and safety metrics
-- 🔍 **Detailed Analysis**: In-depth road safety statistics and condition analysis
-- 🛡️ **Safety Tips**: Interactive learning modules including:
-  - General safety guidelines
-  - Interactive scenarios
-  - Safety knowledge quiz
+## Key Features
+- 📊 **Live Dashboard**
+  - Speed monitoring
+  - Driving pattern analysis
+  - Safety score tracking
+
+- 🎓 **Learning Center**
+  - Interactive safety scenarios
+  - Knowledge quizzes
   - Progress tracking
-- 🚨 **Emergency Services**: Quick access to emergency contacts and guidelines
+  - Video tutorials
 
-## Installation
+- 🚨 **Smart Alerts**
+  - Speed warnings
+  - Turn notifications
+  - Phone usage alerts
+  - Brake warnings
+  - Lane departure alerts
 
-### Prerequisites
-- Python 3.8 or higher
-- pip (Python package installer)
+## Getting Started
 
-### Setup
-1. Clone the repository:
+### Requirements
+- Python 3.8+
+- pip package manager
+
+### Installation
+1. Clone the repository
 ```bash
-git clone https://github.com/Reenamjot/boblol.git
-cd boblol
+git clone https://github.com/yourusername/teen-driving-safety.git
+cd teen-driving-safety
 ```
 
-2. Install required packages:
+2. Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Run the application:
+3. Launch the app
 ```bash
-streamlit run App_UI.py
+streamlit run app.py
 ```
-
-## Data Sources
-The application uses multiple data sources:
-- Synthetic traffic fatalities data
-- Weather condition data
-- Road safety analysis data
 
 ## Project Structure
 ```
-boblol/
-├── App_UI.py              # Main application file
-├── detailed_analysis.csv  # Road safety data
-├── requirements.txt       # Project dependencies
-└── README.md             # Project documentation
+teen-driving-safety/
+├── app.py              # Main application
+├── src/
+│   ├── analysis.py    # Data analysis
+│   ├── alerts.py      # Alert system
+│   └── learning.py    # Learning modules
+├── data/              # Data files
+├── tests/             # Test files
+└── requirements.txt   # Dependencies
 ```
 
+## Contributing
+1. Fork the repository
+2. Create a feature branch
+3. Commit changes
+4. Push to the branch
+5. Open a pull request
 
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-
+## Contact
+Your Name - your.email@example.com
+Project Link: https://github.com/yourusername/teen-driving-safety
