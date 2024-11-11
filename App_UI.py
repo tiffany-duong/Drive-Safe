@@ -4,7 +4,11 @@ import os
 from dotenv import load_dotenv
 from safety_tips import SafetyTipsGenerator
 import pandas as pd
-import plotly.express as px
+try:
+    import plotly.express as px
+except ImportError:
+    st.error("Please install plotly using: pip install plotly")
+    st.stop()
 from datetime import datetime, timedelta
 import numpy as np
 import ssl
