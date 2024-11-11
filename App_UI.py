@@ -334,6 +334,9 @@ def main():
             st.warning("Light rain expected this afternoon. Remember to maintain safe following distance!")
 
         elif page == "Detailed Analysis":
+            # Initialize distraction_rating at the start
+            distraction_rating = 0
+            
             st.subheader("📊 Road Safety Analysis")
             
             # Add Report Accident Button
@@ -392,13 +395,29 @@ def main():
                 st.metric("Stopping Distance (feet)", f"{stopping_distance:.1f}")
                 
             # Voice Alert System (with audio)
-            st.markdown("### 🎙️ Voice Alert System")
-            alert_triggers = st.multiselect("Simulate Driving Behaviors:",
-                ["Speeding", "Sharp Turn", "Sudden Brake", "Phone Use", "Lane Departure"])
+            st.markdown("### 🎙️ Real-time Alert Simulation")
+            st.info("Select different scenarios to hear how the alert system works:")
             
-            if alert_triggers:
-                for trigger in alert_triggers:
-                    play_alert(trigger)
+            col1, col2 = st.columns(2)
+            with col1:
+                if st.button("🚗 Simulate Speeding"):
+                    play_alert("speeding")
+                if st.button("📱 Simulate Phone Use"):
+                    play_alert("phone_use")
+                if st.button("↔️ Simulate Lane Departure"):
+                    play_alert("lane_departure")
+            
+            with col2:
+                if st.button("❗ Simulate Sharp Turn"):
+                    play_alert("sharp_turn")
+                if st.button("🛑 Simulate Sudden Brake"):
+                    play_alert("sudden_brake")
+                if st.button("😴 Simulate Fatigue"):
+                    play_alert("fatigue")
+
+            # Add this to your distraction rating section
+            if distraction_rating > 60:
+                play_alert("distraction_high")
 
             # Keep your existing visualizations and conclusions here
 
@@ -606,16 +625,9 @@ def play_alert(alert_type):
             mixer.music.load(alert_file)
             mixer.music.play()
             time.sleep(2)  # Wait for audio to finish
+            mixer.music.stop()  # Stop the audio after playing
         else:
-            # Fallback to text alert if audio file not found
-            alert_messages = {
-                "Speeding": "🔊 Warning: Speed exceeds limit. Please slow down.",
-                "Sharp Turn": "🔊 Caution: Sharp turn ahead. Reduce speed.",
-                "Phone Use": "🔊 Alert: Phone use detected. Keep eyes on road.",
-                "Sudden Brake": "🔊 Notice: Sudden braking detected. Maintain safe distance.",
-                "Lane Departure": "🔊 Warning: Lane departure detected. Stay in lane."
-            }
-            st.warning(alert_messages.get(alert_type, "⚠️ Alert!"))
+            st.warning(f"⚠️ Alert: {alert_type}")
     except Exception as e:
         st.error(f"Audio alert system unavailable: {str(e)}")
 
