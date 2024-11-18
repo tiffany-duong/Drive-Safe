@@ -2,13 +2,21 @@ import streamlit as st
 import sys
 import subprocess
 
-# Replace the speech recognition import with this try-except block
-try:
-    import speech_recognition as sr
-    SPEECH_RECOGNITION_ENABLED = True
-except ImportError:
-    SPEECH_RECOGNITION_ENABLED = False
-    st.warning("Speech recognition is not available in the cloud deployment.")
+# At the top of your file, add this
+IS_CLOUD_DEPLOYMENT = True  # Set this to True for cloud deployment
+
+# Comment out or wrap all audio-related imports in try-except
+if not IS_CLOUD_DEPLOYMENT:
+    try:
+        import speech_recognition as sr
+        from pygame import mixer
+        from gtts import gTTS
+        AUDIO_ENABLED = True
+    except ImportError:
+        AUDIO_ENABLED = False
+else:
+    AUDIO_ENABLED = False
+    st.warning("Audio features are disabled in cloud deployment. Please run locally for full functionality.")
 
 from datetime import datetime
 import requests  # Add this import
@@ -24,15 +32,6 @@ from datetime import datetime
 import random
 import time
 
-# Replace the pygame import with this try-except block
-try:
-    from pygame import mixer
-    PYGAME_ENABLED = True
-except ImportError:
-    PYGAME_ENABLED = False
-    st.warning("Audio playback is not available in the cloud deployment.")
-
-from gtts import gTTS
 import plotly.express as px
 ssl._create_default_https_context = ssl._create_unverified_context
 
@@ -496,8 +495,8 @@ def main():
                 
                 # Recording button
                 if st.button("🎙️", key="record_button"):
-                    if not SPEECH_RECOGNITION_ENABLED:
-                        st.error("Speech recognition is not available in this environment.")
+                    if not AUDIO_ENABLED:
+                        st.info("This feature is only available when running the app locally.")
                         return
                     r = sr.Recognizer()
                     with sr.Microphone() as source:
@@ -911,8 +910,8 @@ def create_safety_score_chart():
 def play_alert(alert_type):
     """Play audio alert based on the type of alert"""
     try:
-        if not PYGAME_ENABLED:
-            st.error("Audio playback is not available in this environment.")
+        if not AUDIO_ENABLED:
+            st.info("This feature is only available when running the app locally.")
             return
         mixer.init()
         alert_file = f"alerts/{alert_type.lower().replace(' ', '_')}.mp3"
@@ -986,8 +985,8 @@ def voice_input_report():
     
     # Single large button
     if st.button("🎙️", key="mega_mic"):
-        if not SPEECH_RECOGNITION_ENABLED:
-            st.error("Speech recognition is not available in this environment.")
+        if not AUDIO_ENABLED:
+            st.info("This feature is only available when running the app locally.")
             return
         r = sr.Recognizer()
         with sr.Microphone() as source:
