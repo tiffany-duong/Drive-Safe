@@ -309,7 +309,72 @@ def main():
                     page = "Safety Tips"
         
         # Page content
-        if page == "Dashboard":
+        if page == "Profile":
+            tab1, tab2 = st.tabs(["Sign In", "Sign Up"])
+            
+            with tab1:
+                st.markdown("""
+                <div style='text-align: center; padding: 20px;'>
+                    <h2>👤 Welcome Back!</h2>
+                </div>
+                """, unsafe_allow_html=True)
+                
+                with st.form("login_form"):
+                    email = st.text_input("Email")
+                    password = st.text_input("Password", type="password")
+                    col1, col2, col3 = st.columns([1,2,1])
+                    with col2:
+                        login_button = st.form_submit_button("Sign In", use_container_width=True)
+                    
+                    st.markdown("""
+                    <div style='text-align: center;'>
+                        <p><a href='#'>Forgot Password?</a></p>
+                    </div>
+                    """, unsafe_allow_html=True)
+            
+            with tab2:
+                st.markdown("""
+                <div style='text-align: center; padding: 20px;'>
+                    <h2>🚗 Create Your Account</h2>
+                </div>
+                """, unsafe_allow_html=True)
+                
+                with st.form("signup_form"):
+                    col1, col2 = st.columns(2)
+                    
+                    with col1:
+                        first_name = st.text_input("First Name")
+                        email = st.text_input("Email Address")
+                        password = st.text_input("Password", type="password")
+                    
+                    with col2:
+                        last_name = st.text_input("Last Name")
+                        phone = st.text_input("Phone Number")
+                        confirm_password = st.text_input("Confirm Password", type="password")
+                    
+                    st.markdown("### Vehicle Information (Optional)")
+                    col3, col4 = st.columns(2)
+                    
+                    with col3:
+                        vehicle_make = st.text_input("Vehicle Make")
+                        vehicle_year = st.text_input("Vehicle Year")
+                    
+                    with col4:
+                        vehicle_model = st.text_input("Vehicle Model")
+                        license_plate = st.text_input("License Plate")
+                    
+                    agree = st.checkbox("I agree to the Terms and Conditions")
+                    
+                    col5, col6, col7 = st.columns([1,2,1])
+                    with col6:
+                        signup_button = st.form_submit_button("Create Account", use_container_width=True)
+                    
+                    if signup_button and agree:
+                        st.success("Account created successfully! Please check your email for verification.")
+                    elif signup_button and not agree:
+                        st.error("Please agree to the Terms and Conditions")
+
+        elif page == "Dashboard":
             # Welcome Section
             st.markdown("""
                 <div class="welcome-header">
@@ -735,71 +800,6 @@ def main():
                 always call 911 first. The information provided here is for general guidance only. 
                 Local emergency numbers and facilities may vary by location.
             """)
-
-        elif page == "Profile":
-            tab1, tab2 = st.tabs(["Sign In", "Sign Up"])
-            
-            with tab1:
-                st.markdown("""
-                <div style='text-align: center; padding: 20px;'>
-                    <h2>👤 Welcome Back!</h2>
-                </div>
-                """, unsafe_allow_html=True)
-                
-                with st.form("login_form"):
-                    email = st.text_input("Email")
-                    password = st.text_input("Password", type="password")
-                    col1, col2, col3 = st.columns([1,2,1])
-                    with col2:
-                        login_button = st.form_submit_button("Sign In", use_container_width=True)
-                    
-                    st.markdown("""
-                    <div style='text-align: center;'>
-                        <p><a href='#'>Forgot Password?</a></p>
-                    </div>
-                    """, unsafe_allow_html=True)
-            
-            with tab2:
-                st.markdown("""
-                <div style='text-align: center; padding: 20px;'>
-                    <h2>🚗 Create Your Account</h2>
-                </div>
-                """, unsafe_allow_html=True)
-                
-                with st.form("signup_form"):
-                    col1, col2 = st.columns(2)
-                    
-                    with col1:
-                        first_name = st.text_input("First Name")
-                        email = st.text_input("Email Address")
-                        password = st.text_input("Password", type="password")
-                    
-                    with col2:
-                        last_name = st.text_input("Last Name")
-                        phone = st.text_input("Phone Number")
-                        confirm_password = st.text_input("Confirm Password", type="password")
-                    
-                    st.markdown("### Vehicle Information (Optional)")
-                    col3, col4 = st.columns(2)
-                    
-                    with col3:
-                        vehicle_make = st.text_input("Vehicle Make")
-                        vehicle_year = st.text_input("Vehicle Year")
-                    
-                    with col4:
-                        vehicle_model = st.text_input("Vehicle Model")
-                        license_plate = st.text_input("License Plate")
-                    
-                    agree = st.checkbox("I agree to the Terms and Conditions")
-                    
-                    col5, col6, col7 = st.columns([1,2,1])
-                    with col6:
-                        signup_button = st.form_submit_button("Create Account", use_container_width=True)
-                    
-                    if signup_button and agree:
-                        st.success("Account created successfully! Please check your email for verification.")
-                    elif signup_button and not agree:
-                        st.error("Please agree to the Terms and Conditions")
 
     except Exception as e:
         st.error(f"Error: {str(e)}")
