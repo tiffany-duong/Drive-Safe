@@ -1,7 +1,12 @@
 import streamlit as st
 import sys
 import subprocess
-import speech_recognition as sr
+try:
+    import speech_recognition as sr
+    SPEECH_RECOGNITION_AVAILABLE = True
+except ImportError:
+    SPEECH_RECOGNITION_AVAILABLE = False
+    st.warning("Speech recognition features are not available. Install 'SpeechRecognition' package to enable voice input.")
 from datetime import datetime
 import requests  # Add this import
 import os
@@ -762,6 +767,10 @@ def create_alert_files():
 
 # Add this function for voice input
 def voice_input_report():
+    if not SPEECH_RECOGNITION_AVAILABLE:
+        st.error("Speech recognition is not available. Please install the required package.")
+        return
+    
     # Remove all previous content and styling
     st.markdown("""
         <style>
@@ -905,4 +914,5 @@ def render_login():
             st.success("Account created successfully!")
 
 if __name__ == "__main__":
-    main()
+    main() 
+    
