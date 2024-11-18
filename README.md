@@ -39,6 +39,7 @@ A comprehensive web application built with Streamlit that helps teen drivers imp
 - Streamlit
 - Pandas
 - Plotly
+- OpenAI
 
 ## Installation & Setup
 
@@ -66,7 +67,13 @@ myenv\Scripts\activate     # For Windows
 pip install -r requirements.txt
 ```
 
-4. Run the application
+4. Set up environment variables
+Create a `.env` file in the root directory and add:
+```
+OPENAI_API_KEY=your_api_key_here
+```
+
+5. Run the application
 ```bash
 streamlit run App_UI.py
 ```

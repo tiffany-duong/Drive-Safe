@@ -1,14 +1,18 @@
 import streamlit as st
+
+# This MUST be the first Streamlit command
+st.set_page_config(
+    page_title="DriveSafe - Advanced Driving Analysis",
+    page_icon="🚗",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# Regular imports without speech recognition
 import sys
 import subprocess
-try:
-    import speech_recognition as sr
-    SPEECH_RECOGNITION_AVAILABLE = True
-except ImportError:
-    SPEECH_RECOGNITION_AVAILABLE = False
-    st.warning("Speech recognition features are not available. Install 'SpeechRecognition' package to enable voice input.")
 from datetime import datetime
-import requests  # Add this import
+import requests
 import os
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -17,7 +21,6 @@ import pandas as pd
 import numpy as np
 import ssl
 import json
-from datetime import datetime
 import random
 import time
 import plotly.express as px
@@ -152,14 +155,6 @@ def load_road_data():
     except Exception as e:
         st.error(f"Error loading data: {str(e)}")
         return None
-
-# Add this at the beginning after your imports
-st.set_page_config(
-    page_title="DriveSafe - Advanced Driving Analysis",
-    page_icon="🚗",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
 
 # Add custom CSS for better styling
 st.markdown("""
@@ -425,20 +420,7 @@ def main():
         elif page == "Detailed Analysis":
             st.subheader("📊 Road Safety Analysis")
             
-            # Simplified voice input section
-            method = st.radio(
-                "Choose reporting method:",
-                ["⌨️ Manual Entry"]  # Removed voice option
-            )
-
-            # Add a disabled voice button with explanation
-            col1, col2 = st.columns([1, 3])
-            with col1:
-                st.button("🎙️ Voice Input", disabled=True)
-            with col2:
-                st.info("Voice input is available in the desktop version only.")
-            
-            # Continue with manual entry form
+            # Remove voice input option, keep only manual entry
             st.subheader("Report Details")
             incident_type = st.selectbox("Type:", ["Minor", "Major", "Hazard", "Emergency"])
             location = st.text_input("Location:")
@@ -739,11 +721,6 @@ def play_alert(alert_type):
     
     message = alert_messages.get(alert_type, f"⚠️ Alert: {alert_type}")
     st.warning(message)
-
-# Add this function for voice input
-def voice_input_report():
-    st.warning("Voice input feature is currently unavailable.")
-    return None
 
 def save_report(report):
     """Save voice report to a file"""
