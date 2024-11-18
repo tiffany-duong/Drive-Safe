@@ -767,74 +767,8 @@ def create_alert_files():
 
 # Add this function for voice input
 def voice_input_report():
-    if not SPEECH_RECOGNITION_AVAILABLE:
-        st.error("Speech recognition is not available. Please install the required package.")
-        return
-    
-    # Remove all previous content and styling
-    st.markdown("""
-        <style>
-        /* Override default button styling */
-        .stButton > button {
-            width: 300px !important;
-            height: 300px !important;
-            border-radius: 50% !important;
-            background-color: #FF4B4B !important;
-            color: white !important;
-            font-size: 100px !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            margin: 50px auto !important;
-            border: none !important;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2) !important;
-        }
-        
-        .stButton > button:hover {
-            background-color: #FF6B6B !important;
-            transform: scale(1.05);
-        }
-        
-        .big-title {
-            font-size: 40px !important;
-            text-align: center;
-            margin-bottom: 30px !important;
-        }
-        </style>
-    """, unsafe_allow_html=True)
-    
-    st.markdown("<h1 class='big-title'>🎙️ Voice Command Center</h1>", unsafe_allow_html=True)
-    
-    # Single large button
-    if st.button("🎙️", key="mega_mic"):
-        r = sr.Recognizer()
-        with sr.Microphone() as source:
-            st.markdown("<h2 style='text-align: center; color: red;'>🔴 Recording...</h2>", unsafe_allow_html=True)
-            try:
-                audio = r.listen(source, timeout=5)
-                st.write("Processing your command...")
-                
-                # Convert speech to text
-                text = r.recognize_google(audio)
-                st.success(f"Recorded: {text}")
-                
-            except sr.WaitTimeoutError:
-                st.error("No speech detected. Please try again.")
-            except sr.UnknownValueError:
-                st.error("Could not understand audio. Please try again.")
-            except Exception as e:
-                st.error(f"Error: {str(e)}")
-
-    # Command list below the button
-    st.markdown("""
-        <div style='text-align: center; padding: 20px; background-color: #f0f2f6; border-radius: 10px; margin-top: 30px;'>
-            <h2 style='color: #1E3D59; margin-bottom: 20px;'>Available Commands:</h2>
-            <p style='font-size: 20px; margin: 10px 0;'>🚨 "Report accident at [location]"</p>
-            <p style='font-size: 20px; margin: 10px 0;'>⚠️ "Report hazard at [location]"</p>
-            <p style='font-size: 20px; margin: 10px 0;'>🆘 "Emergency assistance needed"</p>
-            <p style='font-size: 20px; margin: 10px 0;'>🌤️ "Weather conditions at [location]"</p>
-        </div>
-    """, unsafe_allow_html=True)
+    st.warning("Voice input feature is currently unavailable.")
+    return None
 
 def save_report(report):
     """Save voice report to a file"""
