@@ -31,3 +31,7 @@ build/
 
 images/
 
+.env
+.env
+__pycache__/
+*.pyc
