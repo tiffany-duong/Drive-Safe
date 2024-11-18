@@ -39,7 +39,6 @@ A comprehensive web application built with Streamlit that helps teen drivers imp
 - Streamlit
 - Pandas
 - Plotly
-- Speech Recognition
 - OpenCV
 
 ## Installation & Setup

@@ -20,8 +20,6 @@ import json
 from datetime import datetime
 import random
 import time
-from pygame import mixer
-from gtts import gTTS
 import plotly.express as px
 ssl._create_default_https_context = ssl._create_unverified_context
 
@@ -729,41 +727,18 @@ def create_safety_score_chart():
     return fig
 
 def play_alert(alert_type):
-    """Play audio alert based on the type of alert"""
-    try:
-        mixer.init()
-        alert_file = f"alerts/{alert_type.lower().replace(' ', '_')}.mp3"
-        if os.path.exists(alert_file):
-            mixer.music.load(alert_file)
-            mixer.music.play()
-            time.sleep(2)  # Wait for audio to finish
-            mixer.music.stop()  # Stop the audio after playing
-        else:
-            st.warning(f"⚠️ Alert: {alert_type}")
-    except Exception as e:
-        st.error(f"Audio alert system unavailable: {str(e)}")
-
-# Optional: Script to generate audio files using gTTS
-def create_alert_files():
-    alerts = {
-        "speeding": "Warning: Speed exceeds limit. Please slow down.",
-        "sharp_turn": "Caution: Sharp turn ahead. Reduce speed.",
-        "phone_use": "Alert: Phone use detected. Keep eyes on road.",
-        "sudden_brake": "Notice: Sudden braking detected. Maintain safe distance.",
-        "lane_departure": "Warning: Lane departure detected. Stay in lane."
+    """Display alert based on the type of alert"""
+    alert_messages = {
+        "speeding": "⚠️ Warning: Speed exceeds limit. Please slow down.",
+        "sharp_turn": "⚠️ Caution: Sharp turn ahead. Reduce speed.",
+        "phone_use": "⚠️ Alert: Phone use detected. Keep eyes on road.",
+        "sudden_brake": "⚠️ Notice: Sudden braking detected. Maintain safe distance.",
+        "lane_departure": "⚠️ Warning: Lane departure detected. Stay in lane.",
+        "fatigue": "⚠️ Warning: Signs of fatigue detected. Consider taking a break."
     }
     
-    # Create alerts directory if it doesn't exist
-    if not os.path.exists("alerts"):
-        os.makedirs("alerts")
-    
-    # Generate audio files
-    for filename, text in alerts.items():
-        tts = gTTS(text=text, lang='en')
-        tts.save(f"alerts/{filename}.mp3")
-
-# Run this once to create the audio files
-# create_alert_files()
+    message = alert_messages.get(alert_type, f"⚠️ Alert: {alert_type}")
+    st.warning(message)
 
 # Add this function for voice input
 def voice_input_report():
