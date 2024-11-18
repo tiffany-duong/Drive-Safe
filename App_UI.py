@@ -290,24 +290,6 @@ def main():
                 ["Profile", "Dashboard", "Detailed Analysis", "Safety Tips", "Emergency Services"]
             )
         
-        # Voice Control System
-        st.sidebar.markdown("### 🎙️ Voice Control")
-        voice_active = st.sidebar.checkbox("Enable Voice Control")
-        
-        if voice_active:
-            st.sidebar.info("Say 'Hey DriveSafe' to activate")
-            if listen_for_wake_word():
-                st.sidebar.success("Wake word detected! Listening for command...")
-                command = process_voice_command()
-                
-                # Handle commands
-                if command == "emergency":
-                    page = "Emergency Services"
-                elif command == "report":
-                    page = "Detailed Analysis"
-                elif command == "tips":
-                    page = "Safety Tips"
-        
         # Page content
         if page == "Profile":
             tab1, tab2 = st.tabs(["Sign In", "Sign Up"])
@@ -438,177 +420,29 @@ def main():
             st.warning("Light rain expected this afternoon. Remember to maintain safe following distance!")
 
         elif page == "Detailed Analysis":
-            # Initialize distraction_rating at the start
-            distraction_rating = 0
-            
             st.subheader("📊 Road Safety Analysis")
             
-            # Add voice input option
+            # Simplified voice input section
             method = st.radio(
                 "Choose reporting method:",
-                ["🎙️ Voice Report", "⌨️ Manual Entry"]
+                ["⌨️ Manual Entry"]  # Removed voice option
             )
-            
-            if method == "🎙️ Voice Report":
-                st.markdown("""
-                    <style>
-                    .stButton > button {
-                        width: 120px !important;
-                        height: 120px !important;
-                        border-radius: 12px !important;
-                        background-color: #1E3D59 !important;
-                        color: white !important;
-                        font-size: 40px !important;
-                        margin: 20px auto !important;
-                        border: none !important;
-                    }
-                    </style>
-                """, unsafe_allow_html=True)
-                
-                # Simple questions list
-                st.markdown("""
-                    ### Please answer:
-                    1. What type of incident?
-                    2. Where did it happen?
-                    3. When did it happen?
-                    4. Any injuries?
-                    5. Need emergency assistance?
-                """)
 
-                # Example
-                st.caption("Example: 'Minor accident on Main Street, happened 10 minutes ago, no injuries, no emergency needed.'")
-                
-                # Recording button
-                if st.button("🎙️", key="record_button"):
-                    r = sr.Recognizer()
-                    with sr.Microphone() as source:
-                        st.write("Recording...")
-                        try:
-                            audio = r.listen(source, timeout=15)
-                            st.write("Processing...")
-                            
-                            # Convert speech to text
-                            text = r.recognize_google(audio)
-                            edited_text = st.text_area("Review and edit if needed:", text)
-                            
-                            # Simple confirmation
-                            incident_type = st.selectbox("Type:", ["Minor", "Major", "Hazard", "Emergency"])
-                            location = st.text_input("Location:")
-                            needs_emergency = st.radio("Emergency needed?", ["No", "Yes"])
-
-                            if st.button("Submit"):
-                                st.success("Report submitted!")
-                            
-                        except sr.WaitTimeoutError:
-                            st.error("No speech detected. Please try again.")
-                        except sr.UnknownValueError:
-                            st.error("Could not understand audio. Please try again.")
-                        except Exception as e:
-                            st.error(f"Error: {str(e)}")
-            else:
-                # Your existing manual entry form
-                with st.expander("Click to Report an Accident or Near-Miss"):
-                    col1, col2 = st.columns(2)
-                    with col1:
-                        incident_date = st.date_input("Date of Incident")
-                        incident_time = st.time_input("Time of Incident")
-                        incident_type = st.selectbox("Type of Incident", 
-                            ["Near Miss", "Minor Accident", "Major Accident"])
-                    with col2:
-                        location = st.text_input("Location")
-                        weather = st.selectbox("Weather Conditions", 
-                            ["Clear", "Rain", "Snow", "Fog", "Other"])
-                
-                # Distraction Factors
-                st.markdown("### 📱 Distraction Factors")
-                distractions = st.multiselect("Select all that apply:",
-                    ["Phone Use", "Eating/Drinking", "Adjusting Music", 
-                     "Passengers", "External Distraction", "Fatigue"])
-                
-                # Calculate distraction rating
-                if distractions:
-                    distraction_rating = len(distractions) * 20
-                    st.warning(f"️ Distraction Rating: {distraction_rating}/100")
-                    if distraction_rating > 60:
-                        st.error("HIGH RISK: Multiple distractions significantly increase accident risk!")
-                        
-                if st.button("Submit Report"):
-                    st.success("Report submitted successfully! Drive safely!")
-
-            # Distraction Analysis Table
-            st.markdown("### 📊 Distraction Risk Analysis")
-            distraction_data = {
-                'Distraction Type': ['Phone Use', 'Eating/Drinking', 'Passenger Interaction', 
-                                   'Music Adjustment', 'External Factors'],
-                'Risk Level': ['Very High', 'Moderate', 'High', 'Moderate', 'High'],
-                'Reaction Time Impact': ['+0.8s', '+0.3s', '+0.5s', '+0.3s', '+0.4s'],
-                'Accident Risk Increase': ['23x', '8x', '12x', '7x', '10x']
-            }
-            df_distractions = pd.DataFrame(distraction_data)
-            st.table(df_distractions)
-
-            # Enhanced Risk Factor Pie Chart with larger size
-            st.markdown("### 🎯 Risk Factor Distribution")
-            risk_data = {
-                'Risk Factor': ['Distracted Driving', 'Speeding', 'Weather Conditions', 
-                               'Fatigue', 'Vehicle Maintenance', 'Traffic Violations'],
-                'Risk Percentage': [30, 25, 15, 12, 10, 8]
-            }
-            df_risks = pd.DataFrame(risk_data)
-            
-            fig = px.pie(df_risks, 
-                         values='Risk Percentage', 
-                         names='Risk Factor',
-                         title='Common Driving Risk Factors',
-                         color_discrete_sequence=px.colors.qualitative.Set3)
-            
-            fig.update_traces(textposition='inside', textinfo='percent+label')
-            fig.update_layout(
-                showlegend=False,
-                height=700,  # Increased height
-                title_x=0.5,
-                title_font_size=24
-            )
-            st.plotly_chart(fig, use_container_width=True)
-
-            # Add navigation buttons based on risk factors
-            st.markdown("### 🚦 Recommended Safety Resources")
-            col1, col2 = st.columns(2)
-            
+            # Add a disabled voice button with explanation
+            col1, col2 = st.columns([1, 3])
             with col1:
-                if st.button("📱 View Distracted Driving Tips", use_container_width=True):
-                    st.session_state.page = "Safety Tips"
-                    st.session_state.safety_topic = "distracted_driving"
-                    st.rerun()
-                    
-                if st.button("🌧️ Weather Safety Guidelines", use_container_width=True):
-                    st.session_state.page = "Safety Tips"
-                    st.session_state.safety_topic = "weather"
-                    st.rerun()
-                    
-                if st.button("⚡ Emergency Response Tips", use_container_width=True):
-                    st.session_state.page = "Safety Tips"
-                    st.session_state.safety_topic = "emergency"
-                    st.rerun()
-            
+                st.button("🎙️ Voice Input", disabled=True)
             with col2:
-                if st.button("🚗 Speed Management Tips", use_container_width=True):
-                    st.session_state.page = "Safety Tips"
-                    st.session_state.safety_topic = "speed"
-                    st.rerun()
-                    
-                if st.button("😴 Fatigue Management", use_container_width=True):
-                    st.session_state.page = "Safety Tips"
-                    st.session_state.safety_topic = "fatigue"
-                    st.rerun()
-                    
-                if st.button("🔧 Vehicle Maintenance Guide", use_container_width=True):
-                    st.session_state.page = "Safety Tips"
-                    st.session_state.safety_topic = "maintenance"
-                    st.rerun()
-
-            # Add a note about the data
-            st.info("👆 Click on any button above to view detailed safety tips and guidelines for each risk factor.")
+                st.info("Voice input is available in the desktop version only.")
+            
+            # Continue with manual entry form
+            st.subheader("Report Details")
+            incident_type = st.selectbox("Type:", ["Minor", "Major", "Hazard", "Emergency"])
+            location = st.text_input("Location:")
+            needs_emergency = st.radio("Emergency needed?", ["No", "Yes"])
+            
+            if st.button("Submit"):
+                st.success("Report submitted!")
 
         elif page == "Safety Tips":
             st.subheader("🚦 Safety Tips for Drivers")
@@ -993,25 +827,6 @@ def voice_input_report():
         </div>
     """, unsafe_allow_html=True)
 
-def test_microphone():
-    """Test if microphone is working correctly"""
-    try:
-        r = sr.Recognizer()
-        with sr.Microphone() as source:
-            st.write("Microphone test successful! Your microphone is working.")
-            return True
-    except Exception as e:
-        st.error(f"Microphone test failed: {str(e)}")
-        st.info("If you're on macOS, make sure you've granted microphone permissions to your terminal/IDE")
-        return False
-
-# Add this to your voice_input_report function at the start:
-def voice_input_report():
-    if not test_microphone():
-        return
-    
-    # ... rest of your existing voice_input_report code ...
-
 def save_report(report):
     """Save voice report to a file"""
     try:
@@ -1049,43 +864,6 @@ def emergency_mode():
     if st.button(" CALL 911", key="emergency"):
         # Integrate with phone's emergency calling system
         pass
-
-def listen_for_wake_word():
-    """Listen for the wake word 'hey drivesafe'"""
-    try:
-        r = sr.Recognizer()
-        with sr.Microphone() as source:
-            audio = r.listen(source, timeout=5)
-            text = r.recognize_google(audio).lower()
-            return "hey drivesafe" in text or "hey drive safe" in text
-    except:
-        return False
-
-def process_voice_command():
-    """Process voice command after wake word is detected"""
-    try:
-        r = sr.Recognizer()
-        with sr.Microphone() as source:
-            st.write("Listening for command...")
-            audio = r.listen(source, timeout=5)
-            command = r.recognize_google(audio).lower()
-            
-            # Simple command processing
-            if "emergency" in command:
-                st.error("🚨 Initiating emergency protocol!")
-                return "emergency"
-            elif "report accident" in command:
-                st.warning("📝 Starting accident report...")
-                return "report"
-            elif "safety tips" in command:
-                st.info("💡 Opening safety tips...")
-                return "tips"
-            else:
-                st.info(f"Command not recognized: {command}")
-                return None
-    except:
-        st.error("Could not process command. Please try again.")
-        return None
 
 def render_login():
     st.markdown("### 🔐 User Authentication")
