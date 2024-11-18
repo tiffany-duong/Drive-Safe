@@ -1,7 +1,7 @@
 # Teen Driving Safety Analysis Platform 🚗
 
 ## Overview
-A comprehensive web application built with Streamlit that helps teen drivers improve their driving safety through real-time analysis, interactive learning, and safety alerts. The platform features voice control capabilities and multiple interactive dashboards for safety monitoring.
+A comprehensive web application built with Streamlit that helps teen drivers improve their driving safety through real-time analysis, interactive learning, and safety alerts. The platform features multiple interactive dashboards for safety monitoring.
 
 ## Key Features
 - 📊 **Dashboard**
@@ -39,7 +39,6 @@ A comprehensive web application built with Streamlit that helps teen drivers imp
 - Streamlit
 - Pandas
 - Plotly
-- OpenCV
 
 ## Installation & Setup
 
@@ -89,11 +88,6 @@ boblol/
 ```
 
 ## Features in Detail
-
-### Voice Control System
-- Voice-activated navigation
-- Voice commands for key functions
-- Hands-free operation
 
 ### Interactive Dashboard
 - Real-time data visualization
