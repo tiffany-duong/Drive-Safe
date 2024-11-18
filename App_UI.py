@@ -1,7 +1,15 @@
 import streamlit as st
 import sys
 import subprocess
-import speech_recognition as sr
+
+# Replace the speech recognition import with this try-except block
+try:
+    import speech_recognition as sr
+    SPEECH_RECOGNITION_ENABLED = True
+except ImportError:
+    SPEECH_RECOGNITION_ENABLED = False
+    st.warning("Speech recognition is not available in the cloud deployment.")
+
 from datetime import datetime
 import requests  # Add this import
 import os
@@ -480,6 +488,9 @@ def main():
                 
                 # Recording button
                 if st.button("🎙️", key="record_button"):
+                    if not SPEECH_RECOGNITION_ENABLED:
+                        st.error("Speech recognition is not available in this environment.")
+                        return
                     r = sr.Recognizer()
                     with sr.Microphone() as source:
                         st.write("Recording...")
@@ -964,6 +975,9 @@ def voice_input_report():
     
     # Single large button
     if st.button("🎙️", key="mega_mic"):
+        if not SPEECH_RECOGNITION_ENABLED:
+            st.error("Speech recognition is not available in this environment.")
+            return
         r = sr.Recognizer()
         with sr.Microphone() as source:
             st.markdown("<h2 style='text-align: center; color: red;'>🔴 Recording...</h2>", unsafe_allow_html=True)
