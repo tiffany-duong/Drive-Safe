@@ -1,73 +1,131 @@
 # Teen Driving Safety Analysis Platform 🚗
 
 ## Overview
-A web application that helps teen drivers improve their driving safety through real-time analysis, interactive learning, and safety alerts.
+A comprehensive web application built with Streamlit that helps teen drivers improve their driving safety through real-time analysis, interactive learning, and safety alerts. The platform features voice control capabilities and multiple interactive dashboards for safety monitoring.
 
 ## Key Features
-- 📊 **Live Dashboard**
-  - Speed monitoring
+- 📊 **Dashboard**
+  - Real-time speed monitoring
   - Driving pattern analysis
+  - Interactive charts and visualizations
   - Safety score tracking
 
-- 🎓 **Learning Center**
-  - Interactive safety scenarios
-  - Knowledge quizzes
-  - Progress tracking
-  - Video tutorials
+- 📈 **Detailed Analysis**
+  - Comprehensive driving statistics
+  - Historical data trends
+  - Performance metrics
+  - Risk assessment
 
-- 🚨 **Smart Alerts**
-  - Speed warnings
-  - Turn notifications
-  - Phone usage alerts
-  - Brake warnings
-  - Lane departure alerts
+- 🛡️ **Safety Tips**
+  - Interactive safety quizzes
+  - Educational content
+  - Best practices
+  - Emergency guidelines
 
-## Getting Started
+- 🚨 **Emergency Services**
+  - Quick access to emergency contacts
+  - Location-based services
+  - Incident reporting
+  - Emergency response protocols
+
+- 👤 **User Authentication**
+  - Secure sign-up/sign-in system
+  - Profile management
+  - Vehicle information tracking
+  - Activity history
+
+## Tech Stack
+- Python 3.8+
+- Streamlit
+- Pandas
+- Plotly
+- Speech Recognition
+- OpenCV
+
+## Installation & Setup
 
 ### Requirements
 - Python 3.8+
 - pip package manager
+- Virtual environment (recommended)
 
-### Installation
+### Installation Steps
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/teen-driving-safety.git
-cd teen-driving-safety
+git clone https://github.com/Reenamjot/boblol.git
+cd boblol
 ```
 
-2. Install dependencies
+2. Create and activate virtual environment (optional but recommended)
+```bash
+python -m venv myenv
+source myenv/bin/activate  # For Unix/macOS
+myenv\Scripts\activate     # For Windows
+```
+
+3. Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Launch the app
+4. Run the application
 ```bash
-streamlit run app.py
+streamlit run App_UI.py
 ```
 
 ## Project Structure
 ```
-teen-driving-safety/
-├── app.py              # Main application
-├── src/
-│   ├── analysis.py    # Data analysis
-│   ├── alerts.py      # Alert system
-│   └── learning.py    # Learning modules
-├── data/              # Data files
-├── tests/             # Test files
-└── requirements.txt   # Dependencies
+boblol/
+├── App_UI.py                    # Main application interface
+├── App_Pic.py                   # Image processing functionality
+├── safety_tips.py               # Safety tips and quiz module
+├── create_alerts.py             # Alert system
+├── check_dependencies.py        # Dependency checker
+├── test_safety.py              # Test cases
+├── data/
+│   ├── data_analysis.csv       # Analysis data
+│   ├── detailed_analysis.csv   # Detailed metrics
+│   └── quiz_scores.json        # User quiz results
+└── requirements.txt            # Project dependencies
+```
+
+## Features in Detail
+
+### Voice Control System
+- Voice-activated navigation
+- Voice commands for key functions
+- Hands-free operation
+
+### Interactive Dashboard
+- Real-time data visualization
+- Custom chart configurations
+- Downloadable reports
+- Trend analysis
+
+### Safety Analysis
+- Risk factor identification
+- Performance scoring
+- Historical comparisons
+- Safety recommendations
+
+### User Authentication
+- Secure login system
+- Profile customization
+- Vehicle management
+- Activity tracking
+
+## Running Tests
+```bash
+python -m pytest test_safety.py
 ```
 
 ## Contributing
 1. Fork the repository
-2. Create a feature branch
-3. Commit changes
-4. Push to the branch
-5. Open a pull request
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Contact
-Your Name - your.email@example.com
-Project Link: https://github.com/yourusername/teen-driving-safety
