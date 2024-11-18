@@ -23,7 +23,15 @@ import json
 from datetime import datetime
 import random
 import time
-from pygame import mixer
+
+# Replace the pygame import with this try-except block
+try:
+    from pygame import mixer
+    PYGAME_ENABLED = True
+except ImportError:
+    PYGAME_ENABLED = False
+    st.warning("Audio playback is not available in the cloud deployment.")
+
 from gtts import gTTS
 import plotly.express as px
 ssl._create_default_https_context = ssl._create_unverified_context
@@ -903,6 +911,9 @@ def create_safety_score_chart():
 def play_alert(alert_type):
     """Play audio alert based on the type of alert"""
     try:
+        if not PYGAME_ENABLED:
+            st.error("Audio playback is not available in this environment.")
+            return
         mixer.init()
         alert_file = f"alerts/{alert_type.lower().replace(' ', '_')}.mp3"
         if os.path.exists(alert_file):
