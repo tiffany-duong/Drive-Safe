@@ -1,4 +1,5 @@
 import streamlit as st
+from openai import OpenAI
 
 # This MUST be the first Streamlit command
 st.set_page_config(
@@ -14,7 +15,6 @@ import subprocess
 from datetime import datetime
 import requests
 import os
-from openai import OpenAI
 from dotenv import load_dotenv
 from safety_tips import SafetyTipsGenerator
 import pandas as pd
@@ -283,10 +283,52 @@ def main():
         
         # Sidebar navigation
         with st.sidebar:
+            # Add custom CSS for the sidebar speech button
+            st.markdown("""
+                <style>
+                .sidebar-speech-button {
+                    background-color: #1E3D59;
+                    color: white;
+                    padding: 12px 20px;
+                    text-align: center;
+                    text-decoration: none;
+                    display: block;
+                    font-size: 16px;
+                    margin: 10px 0;
+                    border-radius: 12px;
+                    border: 2px solid #ffffff;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                }
+                .sidebar-speech-button:hover {
+                    background-color: #2E5D79;
+                    transform: translateY(-2px);
+                }
+                .voice-hint {
+                    text-align: center;
+                    color: #666;
+                    font-size: 0.9em;
+                    font-style: italic;
+                    margin-top: 5px;
+                }
+                </style>
+            """, unsafe_allow_html=True)
+            
+            # Navigation selectbox
             page = st.selectbox(
                 "Navigation",
-                ["Profile", "Dashboard", "Detailed Analysis", "Safety Tips", "Emergency Services"]
+                ["Profile", "Dashboard", "Detailed Analysis", "Safety Tips", "Emergency Services", "AI Assistant"]
             )
+            
+            # Add speech button and hint text
+            st.markdown("""
+                <div class='sidebar-speech-button'>
+                    🎤 Voice Commands
+                </div>
+                <div class='voice-hint'>
+                    Say "Hey DriveSafe" to start
+                </div>
+            """, unsafe_allow_html=True)
         
         # Page content
         if page == "Profile":
@@ -562,7 +604,7 @@ def main():
                 """)
                 
                 st.markdown("""
-                ### 🚗 Roadside Assistance
+                ###  Roadside Assistance
                 - **AAA**: 1-800-222-4357
                 - **National Highway Traffic Safety**: 1-888-327-4236
                 """)
@@ -619,6 +661,59 @@ def main():
                 always call 911 first. The information provided here is for general guidance only. 
                 Local emergency numbers and facilities may vary by location.
             """)
+
+        elif page == "AI Assistant":
+            st.subheader("🤖 AI Driving Assistant")
+            
+            # Container for chat interface
+            chat_container = st.container()
+            
+            # Speech button (non-functional placeholder)
+            col1, col2, col3 = st.columns([1,2,1])
+            with col2:
+                st.markdown(
+                    """
+                    <style>
+                    .speech-button {
+                        background-color: #1E3D59;
+                        color: white;
+                        padding: 15px 32px;
+                        text-align: center;
+                        text-decoration: none;
+                        display: inline-block;
+                        font-size: 16px;
+                        margin: 4px 2px;
+                        border-radius: 12px;
+                        width: 100%;
+                    }
+                    </style>
+                    """,
+                    unsafe_allow_html=True
+                )
+                st.button("🎤 Hold to Speak", key="speech_button", help="Speech functionality coming soon!")
+            
+            # Text input for questions
+            with chat_container:
+                user_question = st.text_input("Ask me anything about driving safety:", 
+                                            placeholder="e.g., How should I handle hydroplaning?")
+                if user_question:
+                    with st.spinner("Thinking..."):
+                        response = ai_driving_assistant(user_question)
+                        
+                        # Create a message-like container for the response
+                        st.markdown(
+                            f"""
+                            <div style="
+                                background-color: #f0f2f6;
+                                border-radius: 10px;
+                                padding: 15px;
+                                margin: 10px 0;
+                            ">
+                                {response}
+                            </div>
+                            """,
+                            unsafe_allow_html=True
+                        )
 
     except Exception as e:
         st.error(f"Error: {str(e)}")
@@ -798,6 +893,32 @@ def render_login():
         if st.button("Create Account", use_container_width=True):
             # Add account creation logic here
             st.success("Account created successfully!")
+
+def ai_driving_assistant(user_query):
+    """
+    AI assistant that answers driving-related questions using OpenAI's API
+    """
+    client = OpenAI()
+    system_prompt = """You are a helpful driving assistant. Provide clear, accurate advice about:
+    - Traffic rules and regulations
+    - Safe driving practices
+    - Vehicle maintenance
+    - Emergency situations
+    Always prioritize safety and include relevant disclaimers when necessary."""
+    
+    try:
+        response = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_query}
+            ],
+            temperature=0.7,
+            max_tokens=300
+        )
+        return response.choices[0].message.content
+    except Exception as e:
+        return f"Error: {str(e)}"
 
 if __name__ == "__main__":
     main() 
