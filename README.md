@@ -1,7 +1,7 @@
 # Teen Driving Safety Analysis Platform 🚗
 
 ## Overview
-A comprehensive web application built with Streamlit that helps teen drivers improve their driving safety through real-time analysis, interactive learning, and safety alerts. The platform features multiple interactive dashboards for safety monitoring.
+A comprehensive web application built with Streamlit that helps teen drivers improve their driving safety through real-time analysis, interactive learning, and safety alerts. The platform features multiple interactive dashboards for safety monitoring and AI-powered assistance.
 
 ## Key Features
 - 📊 **Dashboard**
@@ -34,12 +34,22 @@ A comprehensive web application built with Streamlit that helps teen drivers imp
   - Vehicle information tracking
   - Activity history
 
+- 🤖 **AI Assistant**
+  - Real-time driving advice
+  - Voice command button interface
+  - Natural language interaction
+  - Personalized responses
+  - OpenAI GPT-3.5 powered responses
+
 ## Tech Stack
 - Python 3.8+
 - Streamlit
 - Pandas
 - Plotly
-- OpenAI
+- OpenAI GPT-3.5
+- Speech Recognition (coming soon)
+- JSON for data storage
+- Plotly for interactive visualizations
 
 ## Installation & Setup
 
@@ -81,7 +91,7 @@ streamlit run App_UI.py
 ## Project Structure
 ```
 boblol/
-├── App_UI.py                    # Main application interface
+├── App_UI.py                    # Main application interface with AI Assistant
 ├── App_Pic.py                   # Image processing functionality
 ├── safety_tips.py               # Safety tips and quiz module
 ├── create_alerts.py             # Alert system
@@ -91,6 +101,7 @@ boblol/
 │   ├── data_analysis.csv       # Analysis data
 │   ├── detailed_analysis.csv   # Detailed metrics
 │   └── quiz_scores.json        # User quiz results
+├── .env                        # Environment variables (OpenAI API key)
 └── requirements.txt            # Project dependencies
 ```
 
@@ -113,6 +124,13 @@ boblol/
 - Profile customization
 - Vehicle management
 - Activity tracking
+
+### AI Assistant
+- Real-time driving advice
+- Voice command button interface
+- Natural language interaction
+- Personalized responses
+- OpenAI GPT-3.5 powered responses
 
 ## Running Tests
 ```bash
