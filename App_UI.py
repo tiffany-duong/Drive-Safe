@@ -460,16 +460,7 @@ def main():
             st.warning("Light rain expected this afternoon. Remember to maintain safe following distance!")
 
         elif page == "Detailed Analysis":
-            st.subheader("📊 Road Safety Analysis")
-            
-            # Remove voice input option, keep only manual entry
-            st.subheader("Report Details")
-            incident_type = st.selectbox("Type:", ["Minor", "Major", "Hazard", "Emergency"])
-            location = st.text_input("Location:")
-            needs_emergency = st.radio("Emergency needed?", ["No", "Yes"])
-            
-            if st.button("Submit"):
-                st.success("Report submitted!")
+            create_detailed_analysis()
 
         elif page == "Safety Tips":
             st.subheader("🚦 Safety Tips for Drivers")
@@ -846,7 +837,7 @@ def emergency_mode():
     """Simplified emergency interface with large buttons and voice commands"""
     st.markdown("""
         <div style='text-align: center'>
-        <h1 style='color: red; font-size: 48px'>🚨 EMERGENCY MODE 🚨</h1>
+        <h1 style='color: red; font-size: 48px'> EMERGENCY MODE 🚨</h1>
         <p style='font-size: 24px'>Please pull over safely before using this app</p>
         </div>
     """, unsafe_allow_html=True)
@@ -919,6 +910,110 @@ def ai_driving_assistant(user_query):
         return response.choices[0].message.content
     except Exception as e:
         return f"Error: {str(e)}"
+
+def create_detailed_analysis():
+    # Header with proper spacing
+    st.markdown("""
+        <div style='text-align: center; padding: 1rem; margin-bottom: 2rem;'>
+            <h1 style='color: #1E3D59;'>📊 Detailed Driving Analysis</h1>
+            <p style='color: #666; font-size: 1.1em;'>Comprehensive analysis of driving patterns and safety metrics</p>
+        </div>
+    """, unsafe_allow_html=True)
+    
+    # Create the pie chart with adjusted layout
+    incident_types = {
+        'Speed Related': 30,
+        'Weather Related': 25,
+        'Distracted Driving': 20,
+        'Vehicle Malfunction': 15,
+        'Other': 10
+    }
+    
+    fig = px.pie(
+        values=list(incident_types.values()),
+        names=list(incident_types.keys()),
+        title='Incident Distribution by Type',  # Shortened title
+        color_discrete_sequence=['#66B2B2', '#FFE5B4', '#B4B4FF', '#FFB4B4', '#E5E5E5'],
+        hole=0.4
+    )
+    
+    # Update layout with better responsiveness
+    fig.update_layout(
+        title={
+            'text': 'Incident Distribution by Type',
+            'x': 0.5,  # Center the title
+            'xanchor': 'center',
+            'y': 0.95,
+            'font': {'size': 24, 'color': '#1E3D59'}
+        },
+        showlegend=True,
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=-0.3,
+            xanchor="center",
+            x=0.5
+        ),
+        height=500,
+        margin=dict(t=100, b=100, l=50, r=50)  # Adjust margins
+    )
+    
+    # Use columns for better spacing
+    col1, col2, col3 = st.columns([1, 3, 1])
+    with col2:
+        st.plotly_chart(fig, use_container_width=True)
+    
+    # Create two columns for metrics and findings
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        # Add styled metrics container
+        st.markdown("""
+            <div style='background-color: #f8f9fa; padding: 20px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);'>
+                <h3 style='color: #1E3D59; margin-bottom: 15px;'>Safety Metrics</h3>
+            </div>
+        """, unsafe_allow_html=True)
+        
+        # Add metrics with improved styling
+        st.metric(
+            label="Overall Safety Score",
+            value="85%",
+            delta="↑ 5%",
+            help="Based on last 30 days of driving data"
+        )
+        st.metric(
+            label="Incident-Free Days",
+            value="45",
+            delta="↑ 12",
+            help="Consecutive days without incidents"
+        )
+    
+    with col2:
+        # Add styled findings container
+        st.markdown("""
+            <div style='background-color: #f8f9fa; padding: 20px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);'>
+                <h3 style='color: #1E3D59; margin-bottom: 15px;'>Key Findings</h3>
+                <ul style='color: #444; margin-left: 20px;'>
+                    <li>Speed remains the leading factor in incidents (30%)</li>
+                    <li>Weather conditions significantly impact safety (25%)</li>
+                    <li>Distracted driving continues to be a major concern (20%)</li>
+                    <li>Regular maintenance could prevent 15% of incidents</li>
+                </ul>
+            </div>
+        """, unsafe_allow_html=True)
+    
+    # Add recommendations section at the bottom
+    st.markdown("""
+        <div style='margin-top: 2rem; padding: 20px; background-color: #f0f7ff; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);'>
+            <h3 style='color: #1E3D59; margin-bottom: 15px;'>💡 Recommendations</h3>
+            <ul style='color: #444; margin-left: 20px;'>
+                <li>Consider implementing speed monitoring systems</li>
+                <li>Enhance weather alert notifications</li>
+                <li>Schedule regular vehicle maintenance checks</li>
+                <li>Provide additional training for distraction prevention</li>
+            </ul>
+        </div>
+    """, unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main() 
