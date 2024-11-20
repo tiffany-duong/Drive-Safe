@@ -450,11 +450,6 @@ def main():
                     </div>
                 """, unsafe_allow_html=True)
             
-            # Daily Tip
-            st.markdown("### 💡 Today's Driving Tip")
-            tips_generator = SafetyTipsGenerator()
-            st.info(tips_generator.get_random_tip())
-            
             # Weather Alert
             st.markdown("### 🌤️ Weather Alert")
             st.warning("Light rain expected this afternoon. Remember to maintain safe following distance!")
@@ -488,14 +483,7 @@ def main():
                 10. 🌙 Extra caution at night
                 """)
             
-            # Add a random daily tip feature
-            st.markdown("---")
-            st.markdown("### 💡 Tip of the Day")
-            tips_generator = SafetyTipsGenerator()
-            daily_tip = tips_generator.get_random_tip()
-            st.info(daily_tip)
-            
-            # Real-time Alert Simulation (moved before Test Your Knowledge)
+            # Real-time Alert Simulation
             st.markdown("### 🎯 Real-time Alert Simulation")
             st.markdown("Select different scenarios to hear how the alert system works:")
             
