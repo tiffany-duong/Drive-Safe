@@ -11,7 +11,11 @@ Drive Safe is designed to help drivers be more alerted of recent traffic acciden
 ## Overview:
 
 
-https://github.com/user-attachments/assets/9e0ff34e-bfae-4881-9f98-306633fac727
+
+https://github.com/user-attachments/assets/40d42037-cf4f-4525-91cc-3c8a3d3b4346
+
+
+
 
 
 
