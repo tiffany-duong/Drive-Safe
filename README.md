@@ -11,6 +11,10 @@ Drive Safe is designed to help drivers be more alerted of recent traffic acciden
 ## Overview:
 
 
+https://github.com/user-attachments/assets/9e0ff34e-bfae-4881-9f98-306633fac727
+
+
+
 ## Key Features
 - 📊 **Dashboard**
   - Real-time speed monitoring
