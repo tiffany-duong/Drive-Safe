@@ -8,7 +8,7 @@ Drive Safe is a web application built with Python, Streamlit, pandas, Plotly, Op
 ## Drive Safe: What is it?
 Drive Safe is designed to help drivers be more alerted of recent traffic accidents so that they can be more aware of hazard intersections and areas using past data to help provide new tips and strategies to help drivers avoid the same accident, hoping to save future lives! Drive Safe features advance AI tools with tips and helpful solutions to help enhance citizen's driving safety and insights.
 
-## Overview:
+## Demo Video:
 
 
 
@@ -22,12 +22,11 @@ With Drive Safe, it offers a real time dashboard, detailed analysis of data, saf
 
 Drive smart, drive safe, with Drive Safe!
 
+## Our Solution
+Drive Safe includes the latest technology with a user friendly platform to help provide insightful tips and suggestions for users.
 
-
-
-## Key Features
 - 📊 **Dashboard**
-  - Real-time speed monitoring
+  - Real-time speed monitoring 
   - Driving pattern analysis
   - Interactive charts and visualizations
   - Safety score tracking
