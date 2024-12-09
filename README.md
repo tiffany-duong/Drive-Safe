@@ -3,7 +3,7 @@
 <img width="823" alt="Screen Shot 2024-12-08 at 4 19 04 PM" src="https://github.com/user-attachments/assets/cc648d12-b49f-4d5e-8418-c7c4c4430a4d">
 
 ## Overview
-A comprehensive web application built with Streamlit that helps teen drivers improve their driving safety through real-time analysis, interactive learning, and safety alerts. The platform features multiple interactive dashboards for safety monitoring and AI-powered assistance.
+Drive Safe is a web application built with Python, Streamlit, pandas, Plotly, OpenAI, and JSON that helps drivers improve their driving safety through real-time analysis, interactive learning, and safety alerts. The platform features multiple interactive dashboards for safety monitoring, AI-powered assistance, 911 emergency button, login/create account page with consent check box, report accident, stimulation accident, and voice command.
 
 ## Key Features
 - 📊 **Dashboard**
