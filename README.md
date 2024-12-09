@@ -1,4 +1,4 @@
-# Teen Driving Safety Analysis Platform 🚗
+# Drive Safe 🚗
 
 ## Overview
 A comprehensive web application built with Streamlit that helps teen drivers improve their driving safety through real-time analysis, interactive learning, and safety alerts. The platform features multiple interactive dashboards for safety monitoring and AI-powered assistance.
