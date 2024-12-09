@@ -1,3 +1,5 @@
+# Tiffany Duong - worked on lines ~532-900. Worked on AI Assistant and 911 emergency features
+
 import streamlit as st
 from openai import OpenAI
 
