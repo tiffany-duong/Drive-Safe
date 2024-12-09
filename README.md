@@ -10,10 +10,7 @@ Drive Safe is designed to help drivers be more alerted of recent traffic acciden
 
 ## Demo Video:
 
-
-
 https://github.com/user-attachments/assets/40d42037-cf4f-4525-91cc-3c8a3d3b4346
-
 
 ## Why Drive Safe?
 Driving has it's pros and cons and there is nothing worst than experiencing a traffic accident. unfortunately, there are no real time monitoring or data tracking applications drivers can use at the moment that features real time update. This can be hard on inexperienced drivers, parents who have their love ones on the road, and corporations. 
@@ -40,7 +37,7 @@ Drive Safe includes the latest technology with a user friendly platform to help 
 - 🛡️ **Safety Tips**
   - Interactive safety quizzes
   - Educational content
-  - Best practices
+  - Safety tips recommendations
   - Emergency guidelines
 
 - 🚨 **Emergency Services**
@@ -51,7 +48,7 @@ Drive Safe includes the latest technology with a user friendly platform to help 
 
 - 👤 **User Authentication**
   - Secure sign-up/sign-in system
-  - Profile management
+  - Profile customization
   - Vehicle information tracking
   - Activity history
 
@@ -64,8 +61,6 @@ Drive Safe includes the latest technology with a user friendly platform to help 
  
 ## What Matters With Drive Safe?
 Drive Safe makes analytics approachable and helps Safe tackles the critical issue of traffic fatalities in Santa Clara County. Drive Safe can help reduce accidents by increasing driver awareness of past incidents and improving overall driving safety and skills.
-
-
 
 ## Tech Stack
 - Python 3.8+
@@ -131,33 +126,6 @@ boblol/
 └── requirements.txt            # Project dependencies
 ```
 
-## Features in Detail
-
-### Interactive Dashboard
-- Real-time data visualization
-- Custom chart configurations
-- Downloadable reports
-- Trend analysis
-
-### Safety Analysis
-- Risk factor identification
-- Performance scoring
-- Historical comparisons
-- Safety recommendations
-
-### User Authentication
-- Secure login system
-- Profile customization
-- Vehicle management
-- Activity tracking
-
-### AI Assistant
-- Real-time driving advice
-- Voice command button interface
-- Natural language interaction
-- Personalized responses
-- OpenAI GPT-3.5 powered responses
-
 ## Running Tests
 ```bash
 python -m pytest test_safety.py
@@ -172,4 +140,3 @@ python -m pytest test_safety.py
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
-
