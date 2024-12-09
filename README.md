@@ -4,6 +4,16 @@
 
 <img width="823" alt="Screen Shot 2024-12-08 at 4 19 04 PM" src="https://github.com/user-attachments/assets/cc648d12-b49f-4d5e-8418-c7c4c4430a4d">
 
+<img width="1661" alt="Screen Shot 2024-12-08 at 7 07 46 PM" src="https://github.com/user-attachments/assets/1f0a992a-15af-4874-911e-5c194ea33cc3">
+
+<img width="1665" alt="Screen Shot 2024-12-08 at 7 07 57 PM" src="https://github.com/user-attachments/assets/4dea293b-561a-4962-a3ec-fdfe1e02526c">
+
+<img width="1674" alt="Screen Shot 2024-12-08 at 7 08 14 PM" src="https://github.com/user-attachments/assets/8760a763-2365-43c0-b7e3-c5bce99f0efb">
+
+<img width="1675" alt="Screen Shot 2024-12-08 at 7 08 29 PM" src="https://github.com/user-attachments/assets/6b7161e2-fa43-4be7-b357-c71c1e0ba1db">
+
+<img width="1674" alt="Screen Shot 2024-12-08 at 7 08 37 PM" src="https://github.com/user-attachments/assets/59565f5d-143b-43b4-93f5-b901c9d6b5f2">
+
 ## Project Summary
 Drive Safe is a web application built with Python, Streamlit, pandas, Plotly, OpenAI, and JSON that helps drivers improve their driving safety through real-time analysis, interactive learning, and safety alerts. The platform features multiple interactive dashboards for safety monitoring, AI-powered assistance, 911 emergency button, login/create account page with consent checkbox, report accident, stimulation accident, and voice command. My contribution includes developing the 911 Emergency Service web page, and the AI Assistant web page while implementing ML and NLP data and models to strengthen the prompt engineering responses for the AI Assistant. A high priority was ensuring that Drive Safe would be user friendly and accessible to everyone while providing accurate, reliable, and consensual data to users. By making analytics accessible to users, Drive Safe addresses the social issue of traffic fatality within Santa Clara County to help reduce the amount of traffic accidents, making drivers more aware of past accidents, and help improve citizen's driving safety and abilities.
 
