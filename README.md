@@ -61,6 +61,11 @@ Drive Safe includes the latest technology with a user friendly platform to help 
   - Natural language interaction
   - Personalized responses
   - OpenAI GPT-3.5 powered responses
+ 
+## What Matters With Drive Safe?
+Drive Safe makes analytics approachable and helps Safe tackles the critical issue of traffic fatalities in Santa Clara County. Drive Safe can help reduce accidents by increasing driver awareness of past incidents and improving overall driving safety and skills.
+
+
 
 ## Tech Stack
 - Python 3.8+
