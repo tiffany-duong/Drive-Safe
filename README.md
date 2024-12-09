@@ -15,6 +15,12 @@ Drive Safe is designed to help drivers be more alerted of recent traffic acciden
 https://github.com/user-attachments/assets/40d42037-cf4f-4525-91cc-3c8a3d3b4346
 
 
+## Why Drive Safe?
+Driving has it's pros and cons and there is nothing worst than experiencing a traffic accident. unfortunately, there are no real time monitoring or data tracking applications drivers can use at the moment that features real time update. This can be hard on inexperienced drivers, parents who have their love ones on the road, and corporations. 
+
+With Drive Safe, it offers a real time dashboard, detailed analysis of data, safety tips, 911 emergency button, secure user authentication, AI Assistant, learning quizzes and much more! 
+
+Drive smart, drive safe, with Drive Safe!
 
 
 
